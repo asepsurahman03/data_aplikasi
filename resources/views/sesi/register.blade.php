@@ -2,7 +2,10 @@
 
 @section('konten')
     <div class="w-50 center border rounded px-3 py-3 mx-auto">
-        <h1>Register</h1>
+        <div class="pb-4">
+            <img style="max-width:400px; max-height:400px" class="mx-auto d-block" src="{{ url('assets/img/logo diskominfo.png')}}" alt="Diskominfo Kota Sukabumi">
+        </div>
+        {{-- <h1>Register</h1> --}}
         <form action="/sesi/create" method="POST">
             @csrf 
             <div class="mb-3">

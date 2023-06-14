@@ -1,7 +1,8 @@
 @extends('layout/aplikasi')
 
 @section('konten')
-    <a href='/siswa' class="btn btn-secondary"><< Kembali</a>
+<div class="container mx-auto">
+    <a href='/siswa' class="btn btn-secondary">Kembali</a>
     <form method="post" action="{{ '/siswa/'.$data->nama_opd }}" enctype="multipart/form-data" class="container">
         @csrf
         @method('put')
@@ -50,7 +51,7 @@
               </div>
 
             </div>
-            <textarea class="form-control mt-3" name="alasan-tidak-aktif" id="alasan-tidak-aktif" cols="30" rows="2" placeholder="alasan tidak aktif" value="{{ $data->alasan_tidak_aktif }}"></textarea>
+            <textarea class="form-control mt-3" name="alasan_tidak_aktif" id="alasan_tidak_aktif" cols="30" rows="2" placeholder="alasan tidak aktif" value="{{ $data->alasan_tidak_aktif }}"></textarea>
         </div>
 
         <div class="mb-3">
@@ -91,15 +92,17 @@
             <textarea name="uraian" id="uraian" cols="10" rows="4" value="{{ $data->uraian }}"></textarea>
         </div>
 
-        <div class="mb-3">
-            <label for="sop" class="form-label">Apakah aplikasi ini memiliki dokumen Proses Bisnis atau SOP yang berkaitan ?(lampirkan
-                jika ada)</label>
-                @if ($data->foto_sop)
+        @if ($data->foto_sop)
             <div class="mb-3">
                 <img style="max-width:50px;max-height:50px" src="{{ url('foto_sop').'/'.$data->foto_sop }}"/>
             </div>
         @endif
-            <input type="file" class="form-control" name="foto_sop" id="foto_sop">
+
+        <div class="mb-3">
+            <label for="sop" class="form-label">Apakah aplikasi ini memiliki dokumen Proses Bisnis atau SOP yang berkaitan ?(lampirkan
+                jika ada)</label>
+                
+            <input type="file" class="form-control" name="foto_sop[]" id="foto_sop" value="{{$data->foto_sop}}" multiple>
         </div>
 
         <div class="mb-3 d-flex flex-column">
@@ -111,14 +114,15 @@
             </select>
         </div>
 
-        <div class="mb-3">
-            <label for="layar" class="form-label">Tampilan layar (screen shoot) aplikasi : (halaman awal, proses yang terjadi, contoh keluaran)</label>
-            @if ($data->foto_layar)
+        @if ($data->foto_layar)
             <div class="mb-3">
                 <img style="max-width:50px;max-height:50px" src="{{ url('foto_layar').'/'.$data->foto_layar }}"/>
             </div>
         @endif
-            <input type="file" class="form-control" name="foto_layar" id="foto_layar">
+
+        <div class="mb-3">
+            <label for="layar" class="form-label">Tampilan layar (screen shoot) aplikasi : (halaman awal, proses yang terjadi, contoh keluaran)</label>
+            <input type="file" class="form-control" name="foto_layar" id="foto_layar" value="{{$data->foto_layar}}">
         </div>
         
         <div class="mb-3">
@@ -127,14 +131,15 @@
             <input type="text" class="form-control" name='pelatihan' id="pelatihan" value="{{ $data->pelatihan}}"></div>
         </div>
 
+        @if ($data->foto_rapat)
+        <div class="mb-3">
+            <img style="max-width:50px;max-height:50px" src="{{ url('foto_rapat').'/'.$data->foto_rapat }}"/>
+        </div>
+        @endif
         <div class="mb-3">
             <label for="rapat" class="form-label">Rapat Evaluasi yang berkaitan dengan aplikasi: (Foto rapat, notulen, daftar hadir)</label>
-            @if ($data->foto_rapat)
-            <div class="mb-3">
-                <img style="max-width:50px;max-height:50px" src="{{ url('foto_rapat').'/'.$data->foto_rapat }}"/>
-            </div>
-        @endif
-            <input type="file" class="form-control" name="foto_rapat" id="foto_rapat">
+            
+            <input type="file" class="form-control" name="foto_rapat" id="foto_rapat" value="{{$data->foto_rapat}}">
         </div>
 
         <div class="mb-3">
@@ -144,7 +149,7 @@
 
         <div class="mb-3 d-flex flex-column">
             <label for="kendala" class="form-label">Apakah ada kendala dalam penggunaan/ pengeloaan aplikasi ?</label>
-            <textarea name="kendala" id="" cols="10" rows="4" value="{{ $data->kendala }}"></textarea>
+            <textarea name="kendala" id="kendala" cols="10" rows="4" value="{{ $data->kendala }}"></textarea>
         </div>
        
 
@@ -161,4 +166,5 @@
             <button type="submit" class="btn btn-primary">UPDATE</button>
         </div>
     </form>
+</div>
 @endsection

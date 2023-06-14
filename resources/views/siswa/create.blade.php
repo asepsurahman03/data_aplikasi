@@ -95,7 +95,7 @@
         <div class="mb-3">
             <label for="sop" class="form-label">Apakah aplikasi ini memiliki dokumen Proses Bisnis atau SOP yang berkaitan ?(lampirkan
                 jika ada)</label>
-            <input type="file" class="form-control" name="foto_sop" id="foto_sop">
+            <input type="file" class="form-control" name="foto_sop[]" id="foto_sop" multiple="true">
         </div>
 
         <div class="mb-3 d-flex flex-column">

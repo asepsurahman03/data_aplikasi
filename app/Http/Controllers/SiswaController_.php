@@ -11,13 +11,13 @@ class SiswaController extends Controller
     function index()
     {
         // $data = siswa::all();
-        $data = siswa::orderBy('nomor_induk', 'desc')->paginate(1);
+        $data = siswa::orderBy('nama_opd', 'desc')->paginate(1);
         return view('siswa/index')->with('data', $data);
     }
     function detail($id)
     {
         // return "<h1>Saya SISWA dari Controller dengan Id $id</h1>";
-        $data = siswa::where('nomor_induk', $id)->first();
+        $data = siswa::where('nama_opd', $id)->first();
         return view('siswa/show')->with('data', $data);
     }
 }

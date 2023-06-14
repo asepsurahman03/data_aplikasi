@@ -10,6 +10,7 @@
 </head>
 <body>
     <div class="container py-5">
+        
         @if (Auth::check())
             @include('komponen/menu')
         @endif
